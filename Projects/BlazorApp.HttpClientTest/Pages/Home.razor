@@ -1,0 +1,25 @@
+﻿@page "/"
+@using BlazorApp.HttpClientTest.Services
+@using BlazorApp.TestClientProject.Client
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code {
+    [Inject]
+    private IHttpTest httpTest { get; set; }
+
+    [Inject]
+    private ITestClient testClient { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await httpTest.TestAsync();
+        var result2 = await testClient.TestAsync();
+
+        Console.WriteLine(result);
+    }
+}
